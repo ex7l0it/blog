@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto+Serif+SC:300,300italic,400,400italic,700,700italic%7CRoboto+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha256-HtsXJanqjKTc8vVQjO4YMhiqFoXkfBsjBWcX91T1jr8=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"ex7l0it.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.17.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Ghidra 安装与使用指南，面向零基础(大概可以🤔)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ghidra 安装与使用指南">
+<meta property="og:url" content="https://ex7l0it.github.io/2022/10/05/Ghidra/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="Ghidra 安装与使用指南，面向零基础(大概可以🤔)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-2.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-3.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-4.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%201.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-5.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%202.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%203.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%204.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%205.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%206.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%207.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%208.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%209.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2010.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2011.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2012.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2013.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2014.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2015.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2016.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2017.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2018.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2019.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2020.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2021.png">
+<meta property="article:published_time" content="2022-10-05T16:00:00.000Z">
+<meta property="article:modified_time" content="2023-07-10T15:35:40.818Z">
+<meta property="article:author" content="Ex7l0it">
+<meta property="article:tag" content="Tutorial">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled.gif">
+
+
+<link rel="canonical" href="https://ex7l0it.github.io/2022/10/05/Ghidra/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://ex7l0it.github.io/2022/10/05/Ghidra/","path":"2022/10/05/Ghidra/","title":"Ghidra 安装与使用指南"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Ghidra 安装与使用指南 | Blog</title>
+  
+
+
+
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{&quot;token&quot;: &quot;796a8510575f44a696b7122ec8152063&quot;}'></script>
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+<link rel="alternate" href="/atom.xml" title="Blog" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Blog</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-rss"><a href="/atom.xml" rel="section"><i class="fa fa-rss fa-fw"></i>RSS</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Ghidra"><span class="nav-number">1.</span> <span class="nav-text">Ghidra</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">下载安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A4%BA%E4%BE%8B%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD"><span class="nav-number">1.3.</span> <span class="nav-text">示例程序下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E8%A6%81%E5%88%86%E6%9E%90%E7%9A%84%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.4.</span> <span class="nav-text">导入要分析的程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E4%BF%AE%E6%94%B9"><span class="nav-number">1.5.</span> <span class="nav-text">设置修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8"><span class="nav-number">1.6.</span> <span class="nav-text">日常使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E6%89%BE%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-number">1.6.1.</span> <span class="nav-text">查找字符串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8%E5%9B%BE"><span class="nav-number">1.6.2.</span> <span class="nav-text">查看函数调用图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E5%8F%98%E9%87%8F%E5%90%8D"><span class="nav-number">1.6.3.</span> <span class="nav-text">修改变量名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E6%B3%A8%E9%87%8A"><span class="nav-number">1.6.4.</span> <span class="nav-text">添加注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%98%BE%E7%A4%BA"><span class="nav-number">1.6.5.</span> <span class="nav-text">数据显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E7%BB%93%E6%9E%84%E4%BD%93"><span class="nav-number">1.6.6.</span> <span class="nav-text">添加结构体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Patching"><span class="nav-number">1.6.7.</span> <span class="nav-text">Patching</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90MBR%E7%A8%8B%E5%BA%8F"><span class="nav-number">1.7.</span> <span class="nav-text">分析MBR程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">1.8.</span> <span class="nav-text">其他</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ex7l0it"
+      src="https://avatars.githubusercontent.com/u/49543413">
+  <p class="site-author-name" itemprop="name">Ex7l0it</p>
+  <div class="site-description" itemprop="description">佛系更新</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ex7l0it" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ex7l0it" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ex7l0it.github.io/2022/10/05/Ghidra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://avatars.githubusercontent.com/u/49543413">
+      <meta itemprop="name" content="Ex7l0it">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Blog">
+      <meta itemprop="description" content="佛系更新">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Ghidra 安装与使用指南 | Blog">
+      <meta itemprop="description" content="Ghidra 安装与使用指南，面向零基础(大概可以🤔)">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Ghidra 安装与使用指南
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-10-06 00:00:00" itemprop="dateCreated datePublished" datetime="2022-10-06T00:00:00+08:00">2022-10-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-07-10 23:35:40" itemprop="dateModified" datetime="2023-07-10T23:35:40+08:00">2023-07-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Tool/" itemprop="url" rel="index"><span itemprop="name">Tool</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2022/10/05/Ghidra/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2022/10/05/Ghidra/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+            <div class="post-description">Ghidra 安装与使用指南，面向零基础(大概可以🤔)</div>
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Ghidra"><a href="#Ghidra" class="headerlink" title="Ghidra"></a>Ghidra</h1><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a><strong>简介</strong></h2><ul>
+<li><a target="_blank" rel="noopener" href="https://ghidra-sre.org/">Ghidra</a> 是一个由美国国家安全局开发的开源免费的逆向工程工具，跟 IDA Pro 有的一拼。</li>
+</ul>
+<blockquote>
+<p>📖 wiki:  <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Ghidra">https://en.wikipedia.org/wiki/Ghidra</a></p>
+<p>Ghidra (pronounced Gee-druh; &#x2F;ˈɡiːdrə&#x2F;) is a free and open source reverse engineering tool developed by the National Security Agency (NSA) of the United States. The binaries were released at RSA Conference in March 2019; the sources were published one month later on GitHub. Ghidra is seen by many security researchers as a competitor to IDA Pro. The software is written in Java using the Swing framework for the GUI. The decompiler component is written in C++. Ghidra plugins can be developed in Java or in Python (provided via Jython).</p>
+</blockquote>
+<p>感觉 Ghidra 比较不错的几点：</p>
+<ul>
+<li>开源免费</li>
+<li>全平台可用(Windows、MacOS、Linux)</li>
+<li>32位、64位程序都可以直接拖拽进来分析，不需要像 IDA 那样分析 32位、64 位程序需要选用指定版本的程序打开才能进行反编译操作</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li>没有 IDA Pro 的远程调试、动态调试</li>
+<li>支持的处理器系列没有 IDA Pro 多，不过已经足够用了 (x86、arm、mips、risc-v都是支持的)</li>
+<li>部分反汇编结果不如 IDA Pro 智能</li>
+</ul>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a><strong>下载安装</strong></h2><p>📥 <strong>下载</strong>：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra">https://github.com/NationalSecurityAgency/ghidra</a><ul>
+<li>截止本文发布时的最新版本（<strong>ghidra_10.1.5_PUBLIC_20220726</strong>）<a target="_blank" rel="noopener" href="https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_10.1.5_build/ghidra_10.1.5_PUBLIC_20220726.zip">下载链接</a></li>
+</ul>
+</li>
+</ul>
+<p>📦 <strong>环境</strong>：</p>
+<p><strong>只要能正常跑起来 Ghidra，就尽可能不要再动 Java 环境了</strong></p>
+<ul>
+<li><p>需要安装 JDK 11（MacOS 环境下以 JDK 1.8 执行会遇到闪退的问题）。</p>
+<ul>
+<li><blockquote>
+<p>JDK 版本根据 github 最新的文档中指明的为准，截止本文发布时需安装 JDK 11</p>
+</blockquote>
+</li>
+<li><a target="_blank" rel="noopener" href="https://adoptium.net/releases.html?variant=openjdk11&jvmVariant=hotspot">zip 压缩包版本</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html">exe 安装程序版本</a></li>
+</ul>
+</li>
+<li><p>注意问题</p>
+<ul>
+<li>【Windows环境下 - 采用 exe 安装】：对于没有安装过 Java JDK 的环境配置最简单，下载安装包后无脑点完下一步即可（安装结束后打开 cmd 执行 <code>java -version</code> 如果不报错无需配置环境变量）<ul>
+<li>如果主机上已经安装过 Java 1.8，如果没有只能在 1.8 版本下运行的程序，优先考虑卸载干净旧的 Java 版本后重新安装 Java JDK 11</li>
+<li>如果需要保留 1.8 版本，那么在直接安装 JDK 11后 ，环境变量会被覆盖为 JDK 11<ul>
+<li>如果需要将环境变量中的 JAVA 指向 1.8 版本，则删除系统环境变量的 Path 中的 <code>C:\Program Files\Java\jdk1.8.0_202\bin;</code> 和 <code>C:\Program Files (x86)\Common Files\Oracle\Java\javapath;</code>，通过手动配置的 <code>JAVA_HOME</code> 环境变量指定 JDK 版本</li>
+</ul>
+</li>
+<li>以默认安装路径安装的JDK11，Ghidra 通常可以自动搜索到，随后能够正常启动程序；如果搜索不到请自行根据提示填入JDK11路径</li>
+</ul>
+</li>
+<li>【Windows环境下 - 采用 zip 压缩包解压】：解压 jdk 后手动指定 <code>JAVA_HOME</code> 环境变量为解压的目录，并将 <code>%JAVA_HOME%\bin</code> 加入 <code>Path</code> 系统环境变量</li>
+</ul>
+</li>
+</ul>
+<p>🛠 <strong>安装</strong>：</p>
+<ul>
+<li>解压后执行启动脚本即可运行，官方也有<a target="_blank" rel="noopener" href="https://ghidra-sre.org/InstallationGuide.html">安装向导</a><ul>
+<li>Windows 执行 <code>ghidraRun.bat</code> 脚本启动程序</li>
+<li>Linux &#x2F; MacOS 执行 <code>ghidraRun</code> 启动程序</li>
+</ul>
+</li>
+<li>可以手动制作一个快捷方式便于启动（将启动脚本作为目标程序，解压后的support文件夹中也有ico图标）</li>
+</ul>
+<h2 id="示例程序下载"><a href="#示例程序下载" class="headerlink" title="示例程序下载"></a>示例程序下载</h2><p>一个简单的栈溢出小程序(Base64 Encoded)：</p>
+<p>demo.out: </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAPT09PT09PT09PSBEZW1vID09PT09PT09PT09AFdoYXQndCB5b3VyIG5hbWU/AEhvdyBvbGQgYXJlIHlvdT8AJWQAV2VsY29tZSwgJXMKAC9iaW4vc2gA5YaN6KeB77yBCgAAAAEbAztUAAAACQAAALjv//+YAAAAKPD//8AAAACI8P//cAAAALjw//+EAAAAbvH//9gAAADy8f//+AAAAAfy//8YAQAASPL//zgBAAC48v//gAEAAAAAAAAUAAAAAAAAAAF6UgABeBABGwwHCJABAAAQAAAAHAAAABDw//8vAAAAAEQHEBAAAAAwAAAALPD//wUAAAAAAAAAJAAAAEQAAAAY7///cAAAAAAOEEYOGEoPC3cIgAA/GjoqMyQiAAAAABQAAABsAAAAYO///2AAAAAAAAAAAAAAABwAAACEAAAAjvD//4QAAAAARQ4QhgJDDQYCewwHCAAAHAAAAKQAAADy8P//FQAAAABFDhCGAkMNBkwMBwgAAAAcAAAAxAAAAOfw//8yAAAAAEUOEIYCQw0GaQwHCAAAAEQAAADkAAAACPH//2UAAAAARg4QjwJJDhiOA0UOII0ERQ4ojAVEDjCGBkgOOIMHRw5Abg44QQ4wQQ4oQg4gQg4YQg4QQg4IABAAAAAsAQAAMPH//wUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQEUAAAAAAAKARQAAAAAAAAQAAAAAAAAABAAAAAAAAAAwAAAAAAAAAABBAAAAAAAANAAAAAAAAACgTQAAAAAAAGQAAAAAAAAAQPkAAAAAAABsAAAAAAAAACAAAAAAAAAAaAAAAAAAAABg+QAAAAAAAHAAAAAAAAAAIAAAAAAAAAPX+/28AAAAAoANAAAAAAAAFAAAAAAAAAJgEQAAAAAAABgAAAAAAAADAA0AAAAAAAAoAAAAAAAAAcQAAAAAAAAALAAAAAAAAABgAAAAAAAAAFQAAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAEBAAAAAAAACAAAAAAAAAJAAAAAAAAAAFAAAAAAAAAAHAAAAAAAAABcAAAAAAAAAgAVAAAAAAAAHAAAAAAAAAFAFQAAAAAAACAAAAAAAAAAwAAAAAAAAAAkAAAAAAAAAGAAAAAAAAAD+//9vAAAAACAFQAAAAAAA////bwAAAAABAAAAAAAAAPD//28AAAAACgVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID5AAAAAAAAAAAAAAAAAAAAAAAAAAAAAMBBAAAAAAABAEEAAAAAAAFAQQAAAAAAAYBBAAAAAAABwEEAAAAAAAIAQQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQgQAAAAAAAR0NDOiAoVWJ1bnR1IDkuNC4wLTF1YnVudHUxfjIwLjA0LjEpIDkuNC4wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAMAAQAYA0AAAAAAAAAAAAAAAAAAAAAAAAMAAgA4A0AAAAAAAAAAAAAAAAAAAAAAAAMAAwBYA0AAAAAAAAAAAAAAAAAAAAAAAAMABAB8A0AAAAAAAAAAAAAAAAAAAAAAAAMABQCgA0AAAAAAAAAAAAAAAAAAAAAAAAMABgDAA0AAAAAAAAAAAAAAAAAAAAAAAAMABwCYBEAAAAAAAAAAAAAAAAAAAAAAAAMACAAKBUAAAAAAAAAAAAAAAAAAAAAAAAMACQAgBUAAAAAAAAAAAAAAAAAAAAAAAAMACgBQBUAAAAAAAAAAAAAAAAAAAAAAAAMACwCABUAAAAAAAAAAAAAAAAAAAAAAAAMADAAAEEAAAAAAAAAAAAAAAAAAAAAAAAMADQAgEEAAAAAAAAAAAAAAAAAAAAAAAAMADgCQEEAAAAAAAAAAAAAAAAAAAAAAAAMADwDwEEAAAAAAAAAAAAAAAAAAAAAAAAMAEAAoE0AAAAAAAAAAAAAAAAAAAAAAAAMAEQAAIEAAAAAAAAAAAAAAAAAAAAAAAAMAEgBoIEAAAAAAAAAAAAAAAAAAAAAAAAMAEwDAIEAAAAAAAAAAAAAAAAAAAAAAAAMAFAAQPkAAAAAAAAAAAAAAAAAAAAAAAAMAFQAYPkAAAAAAAAAAAAAAAAAAAAAAAAMAFgAgPkAAAAAAAAAAAAAAAAAAAAAAAAMAFwDwP0AAAAAAAAAAAAAAAAAAAAAAAAMAGAAAQEAAAAAAAAAAAAAAAAAAAAAAAAMAGQBIQEAAAAAAAAAAAAAAAAAAAAAAAAMAGgBgQEAAAAAAAAAAAAAAAAAAAAAAAAMAGwAAAAAAAAAAAAAAAAAAAAAAAQAAAAQA8f8AAAAAAAAAAAAAAAAAAAAADAAAAAIADwAwEUAAAAAAAAAAAAAAAAAADgAAAAIADwBgEUAAAAAAAAAAAAAAAAAAIQAAAAIADwCgEUAAAAAAAAAAAAAAAAAANwAAAAEAGgBgQEAAAAAAAAEAAAAAAAAARgAAAAEAFQAYPkAAAAAAAAAAAAAAAAAAbQAAAAIADwDQEUAAAAAAAAAAAAAAAAAAeQAAAAEAFAAQPkAAAAAAAAAAAAAAAAAAmAAAAAQA8f8AAAAAAAAAAAAAAAAAAAAAAQAAAAQA8f8AAAAAAAAAAAAAAAAAAAAAnwAAAAEAEwD8IUAAAAAAAAAAAAAAAAAAAAAAAAQA8f8AAAAAAAAAAAAAAAAAAAAArQAAAAAAFAAYPkAAAAAAAAAAAAAAAAAAvgAAAAEAFgAgPkAAAAAAAAAAAAAAAAAAxwAAAAAAFAAQPkAAAAAAAAAAAAAAAAAA2gAAAAAAEgBoIEAAAAAAAAAAAAAAAAAA7QAAAAEAGAAAQEAAAAAAAAAAAAAAAAAAAwEAABIADwAgE0AAAAAAAAUAAAAAAAAAEwEAABIADwDWEUAAAAAAAIQAAAAAAAAAHAEAABIAAAAAAAAAAAAAAAAAAAAAAAAAsgEAACAAGQBIQEAAAAAAAAAAAAAAAAAAMQEAABIAAAAAAAAAAAAAAAAAAAAAAAAAQwEAABAAGQBgQEAAAAAAAAAAAAAAAAAADQEAABICEAAoE0AAAAAAAAAAAAAAAAAASgEAABIAAAAAAAAAAAAAAAAAAAAAAAAAXgEAABEAGgCAQEAAAAAAAMgAAAAAAAAAZAEAABIAAAAAAAAAAAAAAAAAAAAAAAAAeAEAABEAGQBYQEAAAAAAAAgAAAAAAAAAfwEAABIAAAAAAAAAAAAAAAAAAAAAAAAAkQEAABIAAAAAAAAAAAAAAAAAAAAAAAAAsAEAABAAGQBIQEAAAAAAAAAAAAAAAAAAvQEAACAAAAAAAAAAAAAAAAAAAAAAAAAAzAEAABECGQBQQEAAAAAAAAAAAAAAAAAA2QEAABEAEQAAIEAAAAAAAAQAAAAAAAAA6AEAABIADwCwEkAAAAAAAGUAAAAAAAAA+AEAABIADwBaEkAAAAAAABUAAAAAAAAAuQAAABAAGgBIQUAAAAAAAAAAAAAAAAAAAQIAABICDwAgEUAAAAAAAAUAAAAAAAAAtgEAABIADwDwEEAAAAAAAC8AAAAAAAAAGQIAABAAGgBgQEAAAAAAAAAAAAAAAAAAJQIAABIADwBvEkAAAAAAADIAAAAAAAAAKgIAABIAAAAAAAAAAAAAAAAAAAAAAAAARAIAABECGQBgQEAAAAAAAAAAAAAAAAAA8gEAABICDAAAEEAAAAAAAAAAAAAAAAAAAGNydHN0dWZmLmMAZGVyZWdpc3Rlcl90bV9jbG9uZXMAX19kb19nbG9iYWxfZHRvcnNfYXV4AGNvbXBsZXRlZC44MDYxAF9fZG9fZ2xvYmFsX2R0b3JzX2F1eF9maW5pX2FycmF5X2VudHJ5AGZyYW1lX2R1bW15AF9fZnJhbWVfZHVtbXlfaW5pdF9hcnJheV9lbnRyeQBkZW1vLmMAX19GUkFNRV9FTkRfXwBfX2luaXRfYXJyYXlfZW5kAF9EWU5BTUlDAF9faW5pdF9hcnJheV9zdGFydABfX0dOVV9FSF9GUkFNRV9IRFIAX0dMT0JBTF9PRkZTRVRfVEFCTEVfAF9fbGliY19jc3VfZmluaQBzYXlIZWxsbwBzdHJuY3B5QEBHTElCQ18yLjIuNQBwdXRzQEBHTElCQ18yLjIuNQBfZWRhdGEAc3lzdGVtQEBHTElCQ18yLjIuNQB1c2VycwBwcmludGZAQEdMSUJDXzIuMi41AGJhbm5lcgByZWFkQEBHTElCQ18yLjIuNQBfX2xpYmNfc3RhcnRfbWFpbkBAR0xJQkNfMi4yLjUAX19kYXRhX3N0YXJ0AF9fZ21vbl9zdGFydF9fAF9fZHNvX2hhbmRsZQBfSU9fc3RkaW5fdXNlZABfX2xpYmNfY3N1X2luaXQAYmFja2Rvb3IAX2RsX3JlbG9jYXRlX3N0YXRpY19waWUAX19ic3Nfc3RhcnQAbWFpbgBfX2lzb2M5OV9zY2FuZkBAR0xJQkNfMi43AF9fVE1DX0VORF9fAAAuc3ltdGFiAC5zdHJ0YWIALnNoc3RydGFiAC5pbnRlcnAALm5vdGUuZ251LnByb3BlcnR5AC5ub3RlLmdudS5idWlsZC1pZAAubm90ZS5BQkktdGFnAC5nbnUuaGFzaAAuZHluc3ltAC5keW5zdHIALmdudS52ZXJzaW9uAC5nbnUudmVyc2lvbl9yAC5yZWxhLmR5bgAucmVsYS5wbHQALmluaXQALnBsdC5zZWMALnRleHQALmZpbmkALnJvZGF0YQAuZWhfZnJhbWVfaGRyAC5laF9mcmFtZQAuaW5pdF9hcnJheQAuZmluaV9hcnJheQAuZHluYW1pYwAuZ290AC5nb3QucGx0AC5kYXRhAC5ic3MALmNvbW1lbnQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAQAAAAIAAAAAAAAAGANAAAAAAAAYAwAAAAAAABwAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAIwAAAAcAAAACAAAAAAAAADgDQAAAAAAAOAMAAAAAAAAgAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAADYAAAAHAAAAAgAAAAAAAABYA0AAAAAAAFgDAAAAAAAAJAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAABJAAAABwAAAAIAAAAAAAAAfANAAAAAAAB8AwAAAAAAACAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAVwAAAPb//28CAAAAAAAAAKADQAAAAAAAoAMAAAAAAAAcAAAAAAAAAAYAAAAAAAAACAAAAAAAAAAAAAAAAAAAAGEAAAALAAAAAgAAAAAAAADAA0AAAAAAAMADAAAAAAAA2AAAAAAAAAAHAAAAAQAAAAgAAAAAAAAAGAAAAAAAAABpAAAAAwAAAAIAAAAAAAAAmARAAAAAAACYBAAAAAAAAHEAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAcQAAAP///28CAAAAAAAAAAoFQAAAAAAACgUAAAAAAAASAAAAAAAAAAYAAAAAAAAAAgAAAAAAAAACAAAAAAAAAH4AAAD+//9vAgAAAAAAAAAgBUAAAAAAACAFAAAAAAAAMAAAAAAAAAAHAAAAAQAAAAgAAAAAAAAAAAAAAAAAAACNAAAABAAAAAIAAAAAAAAAUAVAAAAAAABQBQAAAAAAADAAAAAAAAAABgAAAAAAAAAIAAAAAAAAABgAAAAAAAAAlwAAAAQAAABCAAAAAAAAAIAFQAAAAAAAgAUAAAAAAACQAAAAAAAAAAYAAAAYAAAACAAAAAAAAAAYAAAAAAAAAKEAAAABAAAABgAAAAAAAAAAEEAAAAAAAAAQAAAAAAAAGwAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAACcAAAAAQAAAAYAAAAAAAAAIBBAAAAAAAAgEAAAAAAAAHAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAApwAAAAEAAAAGAAAAAAAAAJAQQAAAAAAAkBAAAAAAAABgAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAALAAAAABAAAABgAAAAAAAADwEEAAAAAAAPAQAAAAAAAANQIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAC2AAAAAQAAAAYAAAAAAAAAKBNAAAAAAAAoEwAAAAAAAA0AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAvAAAAAEAAAACAAAAAAAAAAAgQAAAAAAAACAAAAAAAABmAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAMQAAAABAAAAAgAAAAAAAABoIEAAAAAAAGggAAAAAAAAVAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAADSAAAAAQAAAAIAAAAAAAAAwCBAAAAAAADAIAAAAAAAAEABAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA3AAAAA4AAAADAAAAAAAAABA+QAAAAAAAEC4AAAAAAAAIAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAOgAAAAPAAAAAwAAAAAAAAAYPkAAAAAAABguAAAAAAAACAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAD0AAAABgAAAAMAAAAAAAAAID5AAAAAAAAgLgAAAAAAANABAAAAAAAABwAAAAAAAAAIAAAAAAAAABAAAAAAAAAA/QAAAAEAAAADAAAAAAAAAPA/QAAAAAAA8C8AAAAAAAAQAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAIAAAAAAAAAAIBAAABAAAAAwAAAAAAAAAAQEAAAAAAAAAwAAAAAAAASAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAACAAAAAAAAAALAQAAAQAAAAMAAAAAAAAASEBAAAAAAABIMAAAAAAAABgAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAEQEAAAgAAAADAAAAAAAAAGBAQAAAAAAAYDAAAAAAAADoAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAABYBAAABAAAAMAAAAAAAAAAAAAAAAAAAAGAwAAAAAAAAKwAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAQAAAAAAAAABAAAAAgAAAAAAAAAAAAAAAAAAAAAAAACQMAAAAAAAAMAGAAAAAAAAHQAAAC0AAAAIAAAAAAAAABgAAAAAAAAACQAAAAMAAAAAAAAAAAAAAAAAAAAAAAAAUDcAAAAAAABQAgAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAABEAAAADAAAAAAAAAAAAAAAAAAAAAAAAAKA5AAAAAAAAHwEAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAA=</span><br></pre></td></tr></table></figure>
+
+<p>去除符号表版本：</p>
+<p>demo_nosym.out:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIAPT09PT09PT09PSBEZW1vID09PT09PT09PT09AFdoYXQndCB5b3VyIG5hbWU/AEhvdyBvbGQgYXJlIHlvdT8AJWQAV2VsY29tZSwgJXMKAC9iaW4vc2gA5YaN6KeB77yBCgAAAAEbAztUAAAACQAAALjv//+YAAAAKPD//8AAAACI8P//cAAAALjw//+EAAAAbvH//9gAAADy8f//+AAAAAfy//8YAQAASPL//zgBAAC48v//gAEAAAAAAAAUAAAAAAAAAAF6UgABeBABGwwHCJABAAAQAAAAHAAAABDw//8vAAAAAEQHEBAAAAAwAAAALPD//wUAAAAAAAAAJAAAAEQAAAAY7///cAAAAAAOEEYOGEoPC3cIgAA/GjoqMyQiAAAAABQAAABsAAAAYO///2AAAAAAAAAAAAAAABwAAACEAAAAjvD//4QAAAAARQ4QhgJDDQYCewwHCAAAHAAAAKQAAADy8P//FQAAAABFDhCGAkMNBkwMBwgAAAAcAAAAxAAAAOfw//8yAAAAAEUOEIYCQw0GaQwHCAAAAEQAAADkAAAACPH//2UAAAAARg4QjwJJDhiOA0UOII0ERQ4ojAVEDjCGBkgOOIMHRw5Abg44QQ4wQQ4oQg4gQg4YQg4QQg4IABAAAAAsAQAAMPH//wUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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</span><br></pre></td></tr></table></figure>
+
+<h2 id="导入要分析的程序"><a href="#导入要分析的程序" class="headerlink" title="导入要分析的程序"></a><strong>导入要分析的程序</strong></h2><p>先通过 <code>File - New Project...</code> 根据提示创建一个项目，创建完成后可以直接将要分析的程序拖拽进来，选择好对应的程序格式(Ghidra会自动识别，识别不出来的时候再手动选择，比如在<a target="_blank" rel="noopener" href="https://www.notion.so/Ghidra-b556a01cb9b640678c8b467895a15568?pvs=21">分析MBR程序时</a>), 直接双击要分析的程序即可进入代码浏览器。头一次打开会提示进行分析，提示一律默认即可。</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled.gif" alt="Untitled"></p>
+<h2 id="设置修改"><a href="#设置修改" class="headerlink" title="设置修改"></a><strong>设置修改</strong></h2><p>可以先在 <code>Edit - Tool Options...</code> 中修改一下 <code>Decompiler</code> 的设置（默认的设置会不显示它认为不可达的代码段，导致在反编译一些程序时可能会找不着部分代码；另外有些函数方法前缀太长，通过设置可以简化一下显示）</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled.png" alt="Untitled"></p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-2.png" alt="image-2.png"></p>
+<h2 id="日常使用"><a href="#日常使用" class="headerlink" title="日常使用"></a><strong>日常使用</strong></h2><p>所有的功能窗口可以在 <code>Windows</code> 栏下选择打开</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-3.png" alt="image-3.png"></p>
+<p>最常用的自然是 <code>Decompile</code> 窗口，不过也不能过分依赖 Ghidra 反编译产生的代码，反编译的代码可能是有问题的，需要再结合中间的汇编代码进行分析。</p>
+<h3 id="查找字符串"><a href="#查找字符串" class="headerlink" title="查找字符串"></a><strong>查找字符串</strong></h3><p>在 <code>Defined Strings</code> 窗口可以直接查看搜索识别到的字符串数据：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-4.png" alt="image-4.png" style="zoom:50%;" />
+
+<h3 id="查看函数调用图"><a href="#查看函数调用图" class="headerlink" title="查看函数调用图"></a><strong>查看函数调用图</strong></h3><p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%201.png" alt="Untitled"></p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/image-5.png" alt="image-5.png" style="zoom:50%;" />
+
+<p>想知道如何才能进入某个函数，也可以通过函数调用树可以清晰的看出来：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%202.png" alt="Untitled" style="zoom:50%;" />
+
+<h3 id="修改变量名"><a href="#修改变量名" class="headerlink" title="修改变量名"></a><strong>修改变量名</strong></h3><p>在变量上右键可以修改变量名（或者使用快捷键 L ）：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%203.png" alt="Untitled" style="zoom:50%;" />
+
+<p>有些 <code>undefined</code> 类型的变量在反编译板块右键没有修改变量名称选项，需要在汇编板块进行修改：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%204.png" alt="Untitled" style="zoom:50%;" />
+
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%205.png" alt="Untitled"></p>
+<h3 id="添加注释"><a href="#添加注释" class="headerlink" title="添加注释"></a><strong>添加注释</strong></h3><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%206.png" alt="Untitled" style="zoom:50%;" />
+
+<h3 id="数据显示"><a href="#数据显示" class="headerlink" title="数据显示"></a><strong>数据显示</strong></h3><p>想让这种在 data 段的数据在伪代码界面能够直接显示字符串内容，选择数据格式为 TerminatedCString 即可</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%207.png" alt="Untitled"></p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%208.png" alt="Untitled"></p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%209.png" alt="Untitled"></p>
+<p>如果内容是中文，这种情况：</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2010.png" alt="Untitled"></p>
+<p>可以在这个默认设置里修改默认字符集为 UTF-8 或 GB2312，就能正常显示了：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2011.png" alt="Untitled" style="zoom:50%;" />
+
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2012.png" alt="Untitled" style="zoom:50%;" />
+
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2013.png" alt="Untitled"></p>
+<p>然后对于后续其他同样的字符串可以使用快捷键 Y 转换。</p>
+<h3 id="添加结构体"><a href="#添加结构体" class="headerlink" title="添加结构体"></a>添加结构体</h3><p>在 <code>Data Type Manager</code> 功能窗口中可以创建新的结构体：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2014.png" alt="Untitled" style="zoom:50%;" />
+
+<p>自定义编辑结构体中包含的数据类型：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2015.png" alt="Untitled" style="zoom:50%;" />
+
+<p>某全局变量配置结构体之前：</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2016.png" alt="Untitled"></p>
+<p>指定自定义的结构体后：</p>
+<p><img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2017.png" alt="Untitled"></p>
+<h3 id="Patching"><a href="#Patching" class="headerlink" title="Patching"></a>Patching</h3><p>在目标汇编代码处右键选择 Patch Instruction 可以进行指令修改：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2018.png" alt="Untitled" style="zoom:50%;" />
+
+<p>结合 Clear Code Bytes 也可以任意修改成其他指令：</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2019.png" alt="Untitled" style="zoom:50%;" />
+
+<h2 id="分析MBR程序"><a href="#分析MBR程序" class="headerlink" title="分析MBR程序"></a><strong>分析MBR程序</strong></h2><blockquote>
+<p>配置方法参考： <a target="_blank" rel="noopener" href="https://jarijaas.github.io/posts/disobey-2020/">https://jarijaas.github.io/posts/disobey-2020/</a></p>
+</blockquote>
+<p>选择语言时，选择 <code>x86 - Real Mode - 16 - little - default</code></p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2020.png" alt="Untitled" style="zoom:50%;" />
+
+<p>然后使用 Memory Map 移动代码块的起始地址为 <code>0x7c00</code> (MBR 程序的入口点)</p>
+<img src="https://raw.githubusercontent.com/ex7l0it/ImageHosting/master/Picture/Untitled%2021.png" alt="Untitled" style="zoom:50%;" />
+
+<p>然后继续分析程序就好</p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a><strong>其他</strong></h2><p>仍在学习中。。。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Tutorial/" rel="tag"># Tutorial</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/09/28/Hackintosh/" rel="prev" title="DELL Vostro 7580 黑苹果安装">
+                  <i class="fa fa-chevron-left"></i> DELL Vostro 7580 黑苹果安装
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2023/07/05/hello-world-again/" rel="next" title="又双又叕重启更新Blog">
+                  又双又叕重启更新Blog <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    
+  <div class="comments" id="disqus_thread">
+    <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+  </div>
+  
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2023</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Ex7l0it</span>
+  </div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+      <span>站点总字数：</span>
+    <span title="站点总字数">16k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span>站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">57 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.0.8/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  <script src="/js/third-party/pace.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<script class="next-config" data-name="disqus" type="application/json">{"enable":true,"shortname":"blog-hgqa4uppru","count":true,"i18n":{"disqus":"disqus"}}</script>
+<script src="/js/third-party/comments/disqus.js"></script>
+<script src="/js/outdate.js"></script>
+</body>
+</html>

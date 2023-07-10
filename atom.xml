@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Blog</title>
+  <icon>https://ex7l0it.github.io/icon.png</icon>
+  
+  <link href="https://ex7l0it.github.io/atom.xml" rel="self"/>
+  
+  <link href="https://ex7l0it.github.io/"/>
+  <updated>2023-07-10T15:35:40.818Z</updated>
+  <id>https://ex7l0it.github.io/</id>
+  
+  <author>
+    <name>Ex7l0it</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hexo 博客自动化部署</title>
+    <link href="https://ex7l0it.github.io/2023/07/07/auto-hexo/"/>
+    <id>https://ex7l0it.github.io/2023/07/07/auto-hexo/</id>
+    <published>2023-07-07T04:43:55.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">使用 Github Actions 自动部署 Hexo 博客</summary>
+    
+    
+    
+    <category term="Blog" scheme="https://ex7l0it.github.io/categories/Blog/"/>
+    
+    
+    <category term="Tutorial" scheme="https://ex7l0it.github.io/tags/Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>又双又叕重启更新Blog</title>
+    <link href="https://ex7l0it.github.io/2023/07/05/hello-world-again/"/>
+    <id>https://ex7l0it.github.io/2023/07/05/hello-world-again/</id>
+    <published>2023-07-05T16:00:00.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">假装是第一篇博客😅</summary>
+    
+    
+    
+    <category term="Others" scheme="https://ex7l0it.github.io/categories/Others/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Ghidra 安装与使用指南</title>
+    <link href="https://ex7l0it.github.io/2022/10/05/Ghidra/"/>
+    <id>https://ex7l0it.github.io/2022/10/05/Ghidra/</id>
+    <published>2022-10-05T16:00:00.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">Ghidra 安装与使用指南，面向零基础(大概可以🤔)</summary>
+    
+    
+    
+    <category term="Tool" scheme="https://ex7l0it.github.io/categories/Tool/"/>
+    
+    
+    <category term="Tutorial" scheme="https://ex7l0it.github.io/tags/Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DELL Vostro 7580 黑苹果安装</title>
+    <link href="https://ex7l0it.github.io/2020/09/28/Hackintosh/"/>
+    <id>https://ex7l0it.github.io/2020/09/28/Hackintosh/</id>
+    <published>2020-09-28T16:00:00.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">好久前给DELL笔记本装的折腾记录</summary>
+    
+    
+    
+    <category term="macOS" scheme="https://ex7l0it.github.io/categories/macOS/"/>
+    
+    
+    <category term="Tutorial" scheme="https://ex7l0it.github.io/tags/Tutorial/"/>
+    
+    <category term="hackintosh" scheme="https://ex7l0it.github.io/tags/hackintosh/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Arch Linux 折腾记</title>
+    <link href="https://ex7l0it.github.io/2020/03/04/Arch/"/>
+    <id>https://ex7l0it.github.io/2020/03/04/Arch/</id>
+    <published>2020-03-04T07:05:00.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">好久前使用 Arch Linux 做主力系统时的折腾笔记, 内容比较杂</summary>
+    
+    
+    
+    <category term="Linux" scheme="https://ex7l0it.github.io/categories/Linux/"/>
+    
+    
+    <category term="Tutorial" scheme="https://ex7l0it.github.io/tags/Tutorial/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OverTheWire-Natas 靶场</title>
+    <link href="https://ex7l0it.github.io/2020/02/08/OverTheWire-Natas/"/>
+    <id>https://ex7l0it.github.io/2020/02/08/OverTheWire-Natas/</id>
+    <published>2020-02-08T13:12:15.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">OverTheWire-Natas Writeup (好久前刷的简单web靶场，只刷到 Level27，现在出的新题目再没刷)</summary>
+    
+    
+    
+    <category term="CTF" scheme="https://ex7l0it.github.io/categories/CTF/"/>
+    
+    
+    <category term="Writeup" scheme="https://ex7l0it.github.io/tags/Writeup/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OverTheWire-Bandit 靶场</title>
+    <link href="https://ex7l0it.github.io/2020/02/07/OverTheWire-Bandit/"/>
+    <id>https://ex7l0it.github.io/2020/02/07/OverTheWire-Bandit/</id>
+    <published>2020-02-07T04:12:15.000Z</published>
+    <updated>2023-07-10T15:35:40.818Z</updated>
+    
+    
+    <summary type="html">OverTheWire-Bandit Writeup (好久前刷的简单靶场, 考察Linux基本命令)</summary>
+    
+    
+    
+    <category term="CTF" scheme="https://ex7l0it.github.io/categories/CTF/"/>
+    
+    
+    <category term="Writeup" scheme="https://ex7l0it.github.io/tags/Writeup/"/>
+    
+  </entry>
+  
+</feed>
